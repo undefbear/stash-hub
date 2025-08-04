@@ -30,6 +30,13 @@ public class StashItemService {
                 .orElse(null);
     }
 
+    public List<StashItemDto> findByCategory(String category) {
+        return repository.findByCategory(category)
+                .stream()
+                .map(mapper::toDto)
+                .collect(Collectors.toList());
+    }
+
     public StashItemDto save(StashItemDto dto) {
         StashItem entity = mapper.toEntity(dto);
         StashItem saved = repository.save(entity);

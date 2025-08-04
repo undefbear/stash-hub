@@ -10,6 +10,8 @@ import java.util.List;
 public interface StashItemRepository extends JpaRepository<StashItem, Long> {
     List<StashItem> findByTag(String tag);
 
+    List<StashItem> findByCategory(String category);
+
     @Query("""
             SELECT s FROM StashItem s
             WHERE LOWER(s.title) LIKE LOWER(CONCAT('%', :text, '%'))

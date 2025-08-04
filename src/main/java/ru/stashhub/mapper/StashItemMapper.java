@@ -22,8 +22,8 @@ public class StashItemMapper {
 
     public StashItem toEntity(StashItemDto dto) {
         String category = dto.getCategory();
-        /* Категория по умолчанию */
-        if (category == null) {
+        /* Категория по умолчанию */ //TODO Сделать отдельную обработку входящих категорий и тегов
+        if (category == null || category.isEmpty()) {
             category = "Inbox";
         }
 

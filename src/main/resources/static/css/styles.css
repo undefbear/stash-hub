@@ -59,6 +59,77 @@ h6 {
     font-weight: 400;
 }
 
+/* САЙДБАР*/
+/* Общий контейнер сайдбара */
+.sidebar {
+    padding: 0;
+    box-shadow: none;
+    height: fit-content;
+    position: sticky;
+    top: 1.5rem;
+    max-height: calc(100vh - 3rem);
+    overflow-y: auto;
+}
+
+/* Заголовок "Категории" */
+.sidebar-header {
+    color: var(--terracotta) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+    padding: 0;
+    font-weight: 500;
+    margin: 0 0.8rem 0.5rem 0.5rem !important; /* top, right, bottom, left */
+    padding: 0 0.8rem 0.5rem 0.5rem !important;
+    border-bottom: 1px solid rgba(217, 212, 204, 0.3);
+}
+
+/* Список категорий */
+.sidebar .list-group {
+    background: none;
+    border: none;
+}
+
+.sidebar .list-group-item {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0 0.5rem 0.5rem 0;
+}
+
+/* Кнопки категорий */
+.sidebar .category-btn {
+    width: 100%;
+    text-align: left;
+    color: var(--dawn-light);
+    padding: 0.55rem 0.85rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: all 0.25s ease;
+    display: block;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+    text-decoration: none;
+}
+
+/* Эффект при наведении */
+.sidebar .category-btn:hover {
+    background-color: rgba(204, 119, 82, 0.1);
+    color: var(--terracotta);
+    transform: none;
+}
+
+/* Активная (выбранная) категория */
+.sidebar .category-btn.fw-bold {
+    color: var(--terracotta);
+    font-weight: 500 !important;
+}
+
+
 /* КНОПКИ */
 /* Прозрачные кнопки */
 .btn-subtle {
@@ -141,7 +212,7 @@ h6 {
 /* Элемент аккордеона */
 .accordion-item {
     background-color: var(--understory);
-    border-radius: var(--ui-radius);
+    border-radius: var(--ui-radius) !important;
     overflow: hidden;
     margin-bottom: 0.8rem;
     box-shadow: 0 2px 6px var(--shadow);

@@ -25,21 +25,6 @@ public class StashItemHtmlController {
     public String findAll(Model model) {
         List<StashItemDto> items = service.findAll();
 
-        // Группировка по категориям //TODO "Work" и "work" должны быть одинаковыми?
-        Map<String, List<StashItemDto>> categoryItems = items.stream()
-                .collect(Collectors.groupingBy(StashItemDto::getCategory));
-
-        // Сортировка. Inbox будет показывать вверху, остальные категории — в алфавитном порядке
-        LinkedHashMap<String, List<StashItemDto>> sorted = categoryItems.entrySet().stream()
-                .sorted((c1, c2) -> {
-                    if ("Inbox".equals(c1.getKey())) return -1; // c1 < c2 -> c1 ставим выше c2
-                    if ("Inbox".equals(c2.getKey())) return 1; // c1 > c2
-                    return c1.getKey().compareToIgnoreCase(c2.getKey());
-                })
-                .collect(LinkedHashMap::new,
-                        (map, category) -> map.put(category.getKey(), category.getValue()),
-                        LinkedHashMap::putAll);
-
         // Список категорий
         Set<String> categories = items.stream()
                 .map(StashItemDto::getCategory)
@@ -52,12 +37,21 @@ public class StashItemHtmlController {
                 .filter(tag -> !tag.trim().isEmpty())
                 .collect(Collectors.toSet());
 
-        model.addAttribute("categoryItems", sorted);
         model.addAttribute("categories", categories);
         model.addAttribute("tags", tags);
         model.addAttribute("stashItem", new StashItemDto());
         model.addAttribute("items", items);
         return "index";
+    }
+
+    /**
+     * GET /stash Показать все сохраненки по конкретной категории.
+     */
+
+    @ResponseBody
+    @GetMapping("/by-category")
+    public List<StashItemDto> findByCategory(@RequestParam String category) {
+        return service.findByCategory(category);
     }
 
     /**
