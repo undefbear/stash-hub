@@ -25,6 +25,9 @@ public class StashItemDto {
     /** Тэг */
     private String tag;
 
+    /** Группа */
+    private String category;
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime created;
 }

@@ -20,7 +20,7 @@ public class StashItemController {
      */
 
     @GetMapping
-    public List<StashItemDto> getAll() {
+    public List<StashItemDto> findAll() {
         return service.findAll();
     }
 
@@ -29,7 +29,7 @@ public class StashItemController {
      */
 
     @GetMapping("/{id}")
-    public ResponseEntity<StashItemDto> getById(@PathVariable Long id) {
+    public ResponseEntity<StashItemDto> findById(@PathVariable Long id) {
         StashItemDto dto = service.findById(id);
         if (dto == null) {
             return ResponseEntity.notFound().build();

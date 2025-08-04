@@ -1,5 +1,6 @@
 package ru.stashhub.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,11 +23,16 @@ public class StashItem {
     private String title;
 
     /** Информация для сохранения */
+    @Column(length = 10000)
     private String body;
 
     /** Тэг */
     private String tag; //TODO вынести в отдельную сущность
 
+    /** Группа/категория */
+    private String category; //TODO вынести в отдельную сущность
+
     /** Дата сохранения записи */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern ="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime created;
 }

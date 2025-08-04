@@ -1,0 +1,347 @@
+/* Природная, тёплая тёмная палитра */
+:root {
+    /* Основной фон */
+    --forest-floor: #1e1c18;     /* тёмная земля */
+    --tree-bark:    #2a2723;     /* тёплая кора */
+    --understory:   #2d2b27;     /* подлесок */
+
+    /* Акценты */
+    --terracotta:   #cc7752;     /* глина */
+    --warm-brown:   #8a6d55;     /* сухая земля */
+    --moss-green:   #6b8a6b;     /* мох */
+    --fern-light:   #9ca986;     /* светлый папоротник */
+    --fog:          #d9d4cc;     /* туман */
+
+    /* Текст */
+    --dawn-light:   #d0cdc7;     /* утренний свет - основной текст */
+    --shadow-tint:  #6d665a;     /* оттенок тени - вторичный текст */
+
+    /* UI */
+    --ui-radius:    10px;
+    --shadow:       rgba(0, 0, 0, 0.2);
+}
+
+/* Общее */
+body {
+    background-color: var(--forest-floor);
+    color: var(--dawn-light);
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    padding: 1.5rem;
+}
+
+/* Заголовки */
+h1 {
+    color: var(--fern-light);
+    text-shadow: 0 1px 2px rgba(107, 138, 107, 0.2);
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    letter-spacing: 0.05em;
+}
+
+h5 {
+    color: var(--fern-light);
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+h6 {
+    color: var(--terracotta);
+    font-size: 0.95rem !important;
+    font-weight: 400;
+}
+
+/* КНОПКИ */
+/* Прозрачные кнопки */
+.btn-subtle {
+    background-color: transparent;
+    color: var(--moss-green);
+    border: none;
+    padding: 0.35rem 0.7rem;
+    border-radius: 6px;
+    font-weight: 400;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.btn-subtle:hover,
+.btn-subtle:focus {
+    background-color: rgba(125, 148, 125, 0.12);
+    color: var(--moss-green);
+    transform: scale(1.02);
+}
+
+/* "Удалить" с акцентом */
+.btn-subtle:hover[data-bs-target="#confirmDeleteModal"] {
+    color: var(--terracotta);
+    background-color: rgba(204, 119, 82, 0.12);
+    transform: scale(1.03);
+}
+
+/* Кнопка "Добавить запись" */
+.btn-link {
+    color: var(--moss-green);
+    opacity: 0.9;
+    transition:
+        color 0.3s ease,
+        opacity 0.3s ease,
+        transform 0.2s ease;
+    font-weight: 400;
+    font-size: 0.95rem;
+}
+
+.btn-link:hover {
+    color: var(--terracotta);
+    opacity: 1;
+    transform: scale(1.03);
+}
+
+/* АККОРДЕОН: основа */
+/* Кнопка аккордеона */
+.accordion-button {
+    /*background-color: var(--understory);*/
+    color: var(--fern-light);
+    font-weight: 500;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    font-family: inherit;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    text-align: left;
+    font-size: 0.98rem;
+    min-height: auto;
+}
+
+.accordion-button:hover {
+    background-color: rgba(107, 138, 107, 0.1);
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--tree-bark);
+    color: var(--terracotta);
+    box-shadow: none;
+}
+
+ /* Убираем синий контур на фокусе */
+.accordion-button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Элемент аккордеона */
+.accordion-item {
+    background-color: var(--understory);
+    border-radius: var(--ui-radius);
+    overflow: hidden;
+    margin-bottom: 0.8rem;
+    box-shadow: 0 2px 6px var(--shadow);
+}
+
+/* Заголовок в кнопке аккордеона */
+.accordion-button .fw-normal {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 500;
+    color: var(--fern-light);
+}
+
+/* Тело аккордеона */
+.accordion-body {
+    padding: 1.2rem;
+    border-top: none;
+    font-size: 0.95rem;
+}
+
+/* Убираем дефолтную стрелку Bootstrap */
+.accordion-button::after {
+    display: none;
+}
+
+/* Своя стрелка — терракотовая;*/
+.accordion-button::before {
+    content: "▽";
+    font-size: 0.95rem;
+    color: var(--terracotta);
+    opacity: 0.8;
+    margin-left: auto;
+    min-width: 1.2em;
+    transition: transform 0.2s ease;
+}
+
+.accordion-button:not(.collapsed)::before {
+    content: "△";
+    transform: rotate(0);
+}
+
+/* ГРУППИРОВКА */
+/* Кнопка аккордеона для группы */
+.accordion-item.category .accordion-button {
+    font-weight: 500;
+    padding: 0.8rem 1.2rem;
+    background-color: transparent;
+}
+
+/* Аккордеон категории */
+.accordion-item.category {
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+/* Аккордеоны заметок внутри группы*/
+.accordion-item.category .accordion-item {
+    border: none;
+    box-shadow: none;
+}
+
+/* Убираем стрелочку у группы */
+.accordion-button.category-header::before,
+.accordion-button.category-header::after {
+    display: none;
+}
+
+/* ЗАМЕТКА */
+/* Дата заметки */
+.note-date {
+    font-size: 0.7rem;
+    color: var(--warm-brown);
+    display: block;
+    margin-bottom: 0.4rem;
+}
+
+/* Текст заметки */
+.note-body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: var(--dawn-light);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    padding: 0 1rem 0 1rem; /* top, right, bottom, left */
+    border: none;
+    margin: 0.8rem 0;
+}
+
+/* Теги */
+.note-tags {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.note-tag-label {
+    font-size: 0.75rem;
+    color: var(--moss-green);
+    white-space: nowrap;
+    background-color: rgba(125, 148, 125, 0.1);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+/* МОДАЛЬНЫЕ ОКНА */
+.modal-content {
+    background-color: var(--understory);
+    color: var(--fern-light);
+    border: none;
+    border-radius: calc(var(--ui-radius) * 1.5); /* чуть мягче уголки */
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 0 0 0.5px rgba(255, 255, 255, 0.05); /* тонкая кайма — объём */
+    overflow: hidden;
+    backdrop-filter: blur(4px); /* лёгкий эффект frosted glass (опционально) */
+}
+
+/* Заголовок — с акцентной полосой слева */
+.modal-header {
+    border-bottom: none;
+    background-color: transparent;
+    padding: 1.2rem 1.5rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Акцентная полоса слева от заголовка */
+.modal-header::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.8rem;
+    bottom: 0.8rem;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--terracotta), var(--warm-brown));
+    border-radius: 1px;
+}
+
+.modal-title {
+    font-weight: 500;
+    font-size: 1.1rem;
+    letter-spacing: 0.03em;
+}
+
+.modal-body {
+    font-size: 0.95rem;
+    padding: 1.2rem 1.5rem 0.8rem;
+    line-height: 1.6;
+}
+
+.modal-body p {
+    color: var(--shadow-tint);
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+.modal-footer {
+    border: none;
+    padding: 0.8rem 1.5rem 1.2rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.6rem;
+}
+
+/* ПОЛЯ ВВОДА */
+.form-control {
+    background-color: var(--tree-bark) !important;
+    border: none;
+    color: var(--dawn-light) !important;
+    border-radius: 8px;
+    font-family: inherit;
+    padding: 0.6rem 1rem;
+    transition: box-shadow 0.2s ease;
+}
+
+/* Подсказка */
+.form-control::placeholder {
+    color: var(--shadow-tint);
+    opacity: 0.7;
+}
+
+/* Фокус */
+.form-control:focus {
+    border-color: var(--terracotta);
+    box-shadow: 0 0 0 0.1rem rgba(204, 119, 82, 0.2);
+    outline: none;
+}
+
+/* Если заметок нет */
+.empty-state {
+    font-style: italic;
+    color: var(--shadow-tint);
+    text-align: center;
+    padding: 1.5rem;
+}
